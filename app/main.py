@@ -25,11 +25,12 @@ def type(args, silent=None):
 	elif command:
 		for path in path_list:
 			if os.path.isfile(f"{path}/{command}"):
-				if (silent):
+				if silent:
 					return True
 				sys.stdout.write(f"{command} is {path}/{command}\n")
 				return
-
+	if silent:
+		return
 	sys.stdout.write(f"{command}: not found\n")
 
 
