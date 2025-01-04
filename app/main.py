@@ -16,15 +16,14 @@ def type(args):
 	command = args[0]
 
 	path_list = PATH.split(":")
-
-	if command:
+	if command in builtin_commands:
+		sys.stdout.write(f"{command} is a shell builtin\n")
+		return
+	elif command:
 		for path in path_list:
 			if os.path.isfile(f"{path}/{command}"):
 				sys.stdout.write(f"{command} is {path}/{command}\n")
 				return None
-	elif command in builtin_commands:
-		sys.stdout.write(f"{command} is a shell builtin\n")
-		return
 
 	sys.stdout.write(f"{command}: not found\n")
 
