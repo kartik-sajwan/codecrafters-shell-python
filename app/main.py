@@ -6,19 +6,25 @@ def echo(args):
 	sys.stdout.write(echo_txt + "\n")
 
 
-def exit(args):
+def exit():
 	sys.exit(0)
 
 
+def type(args):
+	command = args[0]
+	if command in builtin_commands:
+		sys.stdout.write(f"{command} is a shell builtin\n")
+	else:
+		sys.stdout.write(f"{command}: not found\n")
 builtin_commands = {
 	"echo": echo,
-	"exit": exit
+	"exit": exit,
+	"type": type
 }
+
 
 def main():
 	while True:
-		# sys.stdout.write("$ ")
-
 		# Wait for user input
 		user_input = input("$ ")
 		split_cmd_str = user_input.split(" ")
@@ -29,8 +35,6 @@ def main():
 			builtin_commands[command](args)
 		else:
 			sys.stdout.write(f"{command}: command not found\n")
-
-
 
 
 if __name__ == "__main__":
