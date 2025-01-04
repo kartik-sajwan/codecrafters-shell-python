@@ -7,10 +7,12 @@ def main():
 
 		# Wait for user input
 		command = input()
-		sys.stdout.write(f"{command}: command not found\n")
 
 		if "exit" in command:
 			sys.exit(0)
+
+		sys.stdout.write(f"{command}: command not found\n")
+
 
 
 
