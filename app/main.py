@@ -12,7 +12,7 @@ def exit(args):
 	sys.exit(0)
 
 
-def type(args):
+def type(args, silent=None):
 	if isinstance(args, list):
 		command = args[0]
 	else:
@@ -25,8 +25,10 @@ def type(args):
 	elif command:
 		for path in path_list:
 			if os.path.isfile(f"{path}/{command}"):
+				if (silent):
+					return True
 				sys.stdout.write(f"{command} is {path}/{command}\n")
-				return True
+				return
 
 	sys.stdout.write(f"{command}: not found\n")
 
@@ -49,7 +51,7 @@ def main():
 
 		if command in builtin_commands:
 			builtin_commands[command](args)
-		elif type(command):
+		elif type(command, silent=True):
 			args_str = "".join(args)
 			os.system(f"{command} {args_str}")
 		else:
