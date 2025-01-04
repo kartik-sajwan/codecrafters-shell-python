@@ -13,7 +13,10 @@ def exit(args):
 
 
 def type(args):
-	command = args[0]
+	if isinstance(args, list):
+		command = args[0]
+	else:
+		command = args
 
 	path_list = PATH.split(":")
 	if command in builtin_commands:
@@ -23,7 +26,7 @@ def type(args):
 		for path in path_list:
 			if os.path.isfile(f"{path}/{command}"):
 				sys.stdout.write(f"{command} is {path}/{command}\n")
-				return None
+				return True
 
 	sys.stdout.write(f"{command}: not found\n")
 
@@ -46,6 +49,9 @@ def main():
 
 		if command in builtin_commands:
 			builtin_commands[command](args)
+		elif type(command):
+			args_str = "".join(args)
+			os.system(f"{command} {args_str}")
 		else:
 			sys.stdout.write(f"{command}: command not found\n")
 
