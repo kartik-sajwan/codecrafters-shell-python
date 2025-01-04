@@ -10,8 +10,11 @@ def main():
 
 		if "exit" in command:
 			sys.exit(0)
-
-		sys.stdout.write(f"{command}: command not found\n")
+		elif "echo" in command:
+			split_string = command.split(" ")
+			sys.stdout.write(" ".join(split_string[1:]))
+		else:
+			sys.stdout.write(f"{command}: command not found\n")
 
 
 
