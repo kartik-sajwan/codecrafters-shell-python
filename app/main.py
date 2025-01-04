@@ -6,7 +6,7 @@ def echo(args):
 	sys.stdout.write(echo_txt + "\n")
 
 
-def exit():
+def exit(args):
 	sys.exit(0)
 
 
@@ -16,6 +16,8 @@ def type(args):
 		sys.stdout.write(f"{command} is a shell builtin\n")
 	else:
 		sys.stdout.write(f"{command}: not found\n")
+
+
 builtin_commands = {
 	"echo": echo,
 	"exit": exit,
