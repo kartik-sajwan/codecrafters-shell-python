@@ -1,5 +1,7 @@
 import sys
+import os
 
+PATH = os.environ.get("PATH")
 
 def echo(args):
 	echo_txt = " ".join(args)
@@ -12,10 +14,20 @@ def exit(args):
 
 def type(args):
 	command = args[0]
-	if command in builtin_commands:
+
+	path_list = PATH.split(":")
+
+	if command:
+		for path in path_list:
+			if os.path.isfile(f"{path}/{command}"):
+				sys.stdout.write(f"{command} is {path}/{command}\n")
+				return None
+	elif command in builtin_commands:
 		sys.stdout.write(f"{command} is a shell builtin\n")
-	else:
-		sys.stdout.write(f"{command}: not found\n")
+		return
+
+	sys.stdout.write(f"{command}: not found\n")
+
 
 
 builtin_commands = {
