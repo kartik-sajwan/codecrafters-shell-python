@@ -34,11 +34,14 @@ def type(args, silent=None):
 	sys.stdout.write(f"{command}: not found\n")
 
 
+def pwd(args):
+	sys.stdout.write(f"{os.getcwd()}\n")
 
 builtin_commands = {
 	"echo": echo,
 	"exit": exit,
-	"type": type
+	"type": type,
+	"pwd": pwd
 }
 
 
