@@ -3,16 +3,17 @@ import os
 
 PATH = os.environ.get("PATH")
 
-def echo(args):
+
+def echo(args: list):
 	echo_txt = " ".join(args)
 	sys.stdout.write(echo_txt + "\n")
 
 
-def exit(args):
+def exit(args: list):
 	sys.exit(0)
 
 
-def type(args, silent=None):
+def type(args: list, silent: bool = False):
 	if isinstance(args, list):
 		command = args[0]
 	else:
@@ -34,14 +35,20 @@ def type(args, silent=None):
 	sys.stdout.write(f"{command}: not found\n")
 
 
-def pwd(args):
+def pwd(args: list):
 	sys.stdout.write(f"{os.getcwd()}\n")
+
+
+def cd(args: list):
+	os.chdir(args[0])
+
 
 builtin_commands = {
 	"echo": echo,
 	"exit": exit,
 	"type": type,
-	"pwd": pwd
+	"pwd": pwd,
+	"cd": cd
 }
 
 
