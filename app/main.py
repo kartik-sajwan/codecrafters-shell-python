@@ -40,8 +40,11 @@ def pwd(args: list):
 
 
 def cd(args: list):
-	os.chdir(args[0])
-
+	try:
+		if args:
+			os.chdir(args[0])
+	except Exception:
+		sys.stdout.write(f"cd: {args[0]}: No such file or directory\n")
 
 builtin_commands = {
 	"echo": echo,
