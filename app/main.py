@@ -41,7 +41,9 @@ def pwd(args: list):
 
 def cd(args: list):
 	try:
-		if args:
+		if "~" in args[0]:
+			os.chdir(os.environ.get("HOME"))
+		elif args:
 			os.chdir(args[0])
 	except Exception:
 		sys.stdout.write(f"cd: {args[0]}: No such file or directory\n")
